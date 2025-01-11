@@ -4,7 +4,7 @@ from movimientos import *
 
 
 opc = 0
-while opc != 4:
+while opc != 3:
     print("\nMENU FACTURACIÓN\n1. Crear cuenta\n2. Consignar dinero\n3. Salir")
     opc = int(input("\nIngrese una opción: "))
     match opc:
