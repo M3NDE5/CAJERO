@@ -1,5 +1,4 @@
 from creacion_cuentas import *
-from creacion_cuentas import fecha
 
 def consignar_saldo():
     cuenta_consignar = input("Ingresa el número de cuenta: ")
@@ -17,3 +16,4 @@ def consignar_saldo():
     else:
         print("La cuenta no existe...")
 
+    

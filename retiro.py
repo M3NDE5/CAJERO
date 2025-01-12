@@ -9,10 +9,7 @@ def retirar_dinero():
             monto = float(input("Ingresa el monto a retirar: "))
             if monto > cuentas[cuenta_retirar]["saldo"]:
                 print("Saldo insuficiente, si tiene algún problema contactarse con su banco!")
-            elif monto < cuentas[cuenta_retirar]["saldo"]:
-                cuentas[cuenta_retirar]["saldo"] -= monto
-                print(f"Consignación exitosa. \nNuevo saldo: {cuentas[cuenta_retirar]['saldo']}")
-            elif monto == cuentas[cuenta_retirar]["saldo"]:
+            elif monto <= cuentas[cuenta_retirar]["saldo"]:
                 cuentas[cuenta_retirar]["saldo"] -= monto
                 print(f"Consignación exitosa. \nNuevo saldo: {cuentas[cuenta_retirar]['saldo']}")
             with open(f"Registro cuentas/{cuenta_retirar}.txt", "w") as archivo:
