@@ -26,5 +26,3 @@ def consignar_saldo():
             
     else:
         print("La cuenta no existe...")
-
-    

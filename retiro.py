@@ -1,5 +1,6 @@
 from creacion_cuentas import*
 from creacion_cuentas import fecha
+from consignar_dinero import *
 
 def retirar_dinero():
     cuenta_retirar = input("Ingresa el número de cuenta: ")
@@ -17,6 +18,10 @@ def retirar_dinero():
                 for llave, valor in cuentas[cuenta_retirar].items():
                     if llave != "clave":
                         archivo.write(f"\n{llave}: {valor}")
+            with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
+                archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
+                archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
+                archivo.write(f"\nDinero retirado: {monto}\n")
         else:
             print("La cuenta no existe...")
     else:

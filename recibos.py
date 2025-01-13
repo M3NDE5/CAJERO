@@ -18,27 +18,20 @@ def pagar(tipo):
                 archivo.write(fecha())
                 for llave, valor in cuentas[cuenta_retirar].items():
                     if llave != "clave":
-                        archivo.write(f"\n{llave}: {valor}")
-            if tipo == "gas":
+                        archivo.write(f"\n{llave}: {valor}")       
                 with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
                     archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
                     archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
-                    archivo.write(f"\nRecibo del GAS pagado con extito\n")
-            elif tipo == "agua":
-                with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
-                    archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
-                    archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
-                    archivo.write(f"\nRecibo del agua pagado con extito\n")
-            elif tipo == "energia":
-                with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
-                    archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
-                    archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
-                    archivo.write(f"\nRecibo del energia pagado con extito\n")
+                    if tipo == "gas":
+                        archivo.write(f"\nRecibo del GAS pagado con exito\n")
+                    elif tipo == "agua":             
+                        archivo.write(f"\nRecibo del AGUA pagado con exito\n")
+                    elif tipo == "energia":
+                        archivo.write(f"\nRecibo de la ENERGIA pagado con exito\n")
         else:
             print("La cuenta no existe...")
     else:
         print("Contraseña incorrecta...")
-    
 
 def menu():
     opc = 0
@@ -59,7 +52,3 @@ def menu():
                 print("Programa terminado...")
             case _:
                 print("Seleccione una opcion valida..")
-
-
-
-    
