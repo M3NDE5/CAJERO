@@ -1,69 +1,44 @@
 from creacion_cuentas import *
 from retiro import *
+from consignar_dinero import *
 
 
-def pagar_energia():
+def pagar(tipo):
     cuenta_retirar = input("Ingresa el número de cuenta: ")
     clave_retirar = str(input("Ingresa la clave: "))
     if clave_retirar in cuentas[cuenta_retirar]["clave"]:
         if cuenta_retirar in cuentas:
-            valor_energia = float(input("\nIngrese el valor a pagar: "))
-            if valor_energia > cuentas[cuenta_retirar]["saldo"]:
+            valor = float(input("\nIngrese el valor a pagar: "))
+            if valor > cuentas[cuenta_retirar]["saldo"]:
                 print("Saldo insuficiente, si tiene algún problema contactarse con su banco!")
-            elif valor_energia <= cuentas[cuenta_retirar]["saldo"]:
-                cuentas[cuenta_retirar]["saldo"] -= valor_energia
+            elif valor <= cuentas[cuenta_retirar]["saldo"]:
+                cuentas[cuenta_retirar]["saldo"] -= valor
                 print(f"Pago realizado con exito!. \nNuevo saldo: {cuentas[cuenta_retirar]['saldo']}")
             with open(f"Registro cuentas/{cuenta_retirar}.txt", "w") as archivo:
                 archivo.write(fecha())
                 for llave, valor in cuentas[cuenta_retirar].items():
                     if llave != "clave":
                         archivo.write(f"\n{llave}: {valor}")
-        else:
-            print("La cuenta no existe...")
-    else:
-        print("Contraseña incorrecta...")
-
-def pagar_gas():
-    cuenta_retirar = input("Ingresa el número de cuenta: ")
-    clave_retirar = str(input("Ingresa la clave: "))
-    if clave_retirar in cuentas[cuenta_retirar]["clave"]:
-        if cuenta_retirar in cuentas:
-            valor_gas = float(input("\nIngrese el valor a pagar: "))
-            if valor_gas > cuentas[cuenta_retirar]["saldo"]:
-                print("Saldo insuficiente, no se pudo realizar el pago!")
-            elif valor_gas <= cuentas[cuenta_retirar]["saldo"]:
-                cuentas[cuenta_retirar]["saldo"] -= valor_gas
-                print(f"Pago realizado con exito!. \nNuevo saldo: {cuentas[cuenta_retirar]['saldo']}")
-            with open(f"Registro cuentas/{cuenta_retirar}.txt", "w") as archivo:
-                archivo.write(fecha())
-                for llave, valor in cuentas[cuenta_retirar].items():
-                    if llave != "clave":
-                        archivo.write(f"\n{llave}: {valor}")
+            if tipo == "gas":
+                with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
+                    archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
+                    archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
+                    archivo.write(f"\nRecibo del GAS pagado con extito\n")
+            elif tipo == "agua":
+                with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
+                    archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
+                    archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
+                    archivo.write(f"\nRecibo del agua pagado con extito\n")
+            elif tipo == "energia":
+                with open(f"Registro cuentas/Movimientos {cuenta_retirar}.txt", "a") as archivo:
+                    archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
+                    archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
+                    archivo.write(f"\nRecibo del energia pagado con extito\n")
         else:
             print("La cuenta no existe...")
     else:
         print("Contraseña incorrecta...")
     
-def pagar_agua():
-    cuenta_retirar = input("Ingresa el número de cuenta: ")
-    clave_retirar = str(input("Ingresa la clave: "))
-    if clave_retirar in cuentas[cuenta_retirar]["clave"]:
-        if cuenta_retirar in cuentas:
-            valor_agua = float(input("\nIngrese el valor a pagar: "))
-            if valor_agua > cuentas[cuenta_retirar]["saldo"]:
-                print("Saldo insuficiente, no se pudo realizar el pago")
-            elif valor_agua <= cuentas[cuenta_retirar]["saldo"]:
-                cuentas[cuenta_retirar]["saldo"] -= valor_agua
-                print(f"Pago realizado con exito!. \nNuevo saldo: {cuentas[cuenta_retirar]['saldo']}")
-            with open(f"Registro cuentas/{cuenta_retirar}.txt", "w") as archivo:
-                archivo.write(fecha())
-                for llave, valor in cuentas[cuenta_retirar].items():
-                    if llave != "clave":
-                        archivo.write(f"\n{llave}: {valor}")
-        else:
-            print("La cuenta no existe...")
-    else:
-        print("Contraseña incorrecta...") 
 
 def menu():
     opc = 0
@@ -73,13 +48,13 @@ def menu():
         match opc:
             case 1:
                 print("PAGAR ENERGIA")
-                pagar_energia()
+                pagar("energia")
             case 2: 
                 print("PAGAR GAS")
-                pagar_gas()
+                pagar("gas")
             case 3:
                 print("PAGAR AGUA")
-                pagar_agua()
+                pagar("agua")
             case 4:
                 print("Programa terminado...")
             case _:
