@@ -44,7 +44,7 @@ def menu():
     opc = 0
     while opc != 4:
         print("\nMENU RECIBOS\n1. Pagar Energia\n2. Pagar Gas\n3. Pagar Agua\n4. Salir")
-        opc = int(input("\nIngrese una opción:\n "))
+        opc = int(input("\nIngrese una opción: "))
         match opc:
             case 1:
                 print("PAGAR ENERGIA")
