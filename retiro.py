@@ -24,10 +24,15 @@ def retirar_dinero():
             with open(f"Registro cuentas/{cuenta_retirar}.json", "w") as archivo:
                 json.dump(cuentas[cuenta_retirar], archivo, indent=4) 
 
-            with open(f"Registro cuentas/Movimientos {cuenta_retirar}.csv", "a") as archivo:
-                archivo.write(f"\nMOVIMIENTOS CUENTA : {cuenta_retirar}")
-                archivo.write(f"\nMovimiento Realizado...\n{tiempo()}")
-                archivo.write(f"\nDinero retirado: {monto}\n")
+            movimientos = [
+                [" Movimiento     ", "  cuenta  ", "  valor  ", "  hora  "],
+                ["Consignar dinero", f"  {cuenta_retirar}  ", f"  {monto}  ", tiempo()]
+            ]
+            
+            archivo = open(f"Registro cuentas/Movimientos {cuenta_retirar}.csv", "a")
+            with archivo:
+                    archivo = writer(archivo)
+                    archivo.writerows(movimientos)
         else:
             print("La cuenta no existe...")
     else:
@@ -35,4 +40,3 @@ def retirar_dinero():
     
     
     
-

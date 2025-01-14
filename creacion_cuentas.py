@@ -18,7 +18,7 @@ def crear_cuentas():
     numero = random.randint(10**11, 10**12 - 1)
     numero_cuenta = str(numero)
     print(f"Su número de cuenta es: {numero_cuenta}")
-    clave = str(input("Ingrese una contraseña de 4 dígitos: "))
+    clave = str(input("Ingrese una contraseña: "))
     cuenta = {
         "fecha" : fecha(),
         "nombre" : nombre,
@@ -38,5 +38,4 @@ def crear_cuentas():
         print(f"{llave}: {valor}")
     
     return f"{cuenta}"
-
 
