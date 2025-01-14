@@ -9,7 +9,7 @@ def movimientos():
     if numero_cuenta in cuentas:
         contraseña = input("Ingrese la clave: ")
         if contraseña in cuentas[numero_cuenta]["clave"]:
-            archivos_leidos = open(f"Registro cuentas/Movimientos {numero_cuenta}.txt", "r")
+            archivos_leidos = open(f"Registro cuentas/Movimientos {numero_cuenta}.csv", "r")
             print("TUS MOVIMIENTOS")
             print(archivos_leidos.read())
         else:

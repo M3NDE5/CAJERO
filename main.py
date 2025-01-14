@@ -23,7 +23,6 @@ while opc != 6:
         case 4:
             print("PAGAR RECIBOS") 
             menu()
-            pagar()
         case 5: 
             print("MOVIMIENTOS")
             movimientos()
